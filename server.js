@@ -3,6 +3,7 @@ const express = require('express');
 const bodyParser = require('body-parser');
 // const leadsRoute = require('./Routes/Leads');
 const port = process.env.port || 5000;
+const host = '0.0.0.0';
 const mongo_atlas_uri = 'mongodb+srv://admin:Ih8you123456@bud.xqer2jf.mongodb.net/?retryWrites=true&w=majority';
 const key = "0$m55r1@qf3mqyg";
 const client = new mongodb.MongoClient(mongo_atlas_uri);
@@ -66,7 +67,7 @@ async function StartServer() {
     await client.connect();
 
     ////////////STARTING SERVER///////////////
-    app.listen(port, () => {
+    app.listen(port, host, () => {
         console.log('Server started at port ' + port);
     });
     ///////////////////////////////////////

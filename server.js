@@ -17,18 +17,36 @@ app.use(bodyParser.urlencoded({
     extended: true
   }));
 
-async function pushLeadDB(req_obj) {
+async function pushLeadDB(req, res) {
     try{        
         console.log("Connected to Mongo Atlas");
+
+        let req_obj = {
+            name: req.body.name,
+            phone: req.body.phone
+        }
 
         const db_BUD = client.db("BUD_sale");
         const collectionLeads = db_BUD.collection("Leads");
 
-        console.log(await collectionLeads.insertOne(req_obj));  
+        //console.log(await collectionLeads.insertOne(req_obj));  
 
-        await client.close();
+        let res_obj = await collectionLeads.findOne({});
+
+        console.log(res_obj);
+
+        await res.send({
+            status: "OK",
+            message: "Success",
+            inserted_object: res_obj
+        });        
+
     } catch(e) {
         console.error(e);
+        res.send({
+            status: "ERROR",
+            message: "Something went wrong"
+        });
     }
 }
 
@@ -40,22 +58,9 @@ app.get("/Leads/add", (req, res) => {
 app.post("/Leads/add", (req, res) => {
     if(req.body.key == key) {
         try {
-            let req_obj = {
-                name: req.body.name,
-                phone: req.body.phone
-            }
-            pushLeadDB(req_obj);
-
-            res.send({
-                status: "OK",
-                message: "Success"
-            });
+            pushLeadDB(req, res);
         } catch(e) {
             console.error(e);
-            res.send({
-                status: "ERROR",
-                message: "Something went wrong"
-            });
         }
     } else {
         res.send('Acess denied');

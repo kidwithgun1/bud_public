@@ -29,9 +29,9 @@ async function pushLeadDB(req, res) {
         const db_BUD = client.db("BUD_sale");
         const collectionLeads = db_BUD.collection("Leads");
 
-        //console.log(await collectionLeads.insertOne(req_obj));  
+        console.log(await collectionLeads.insertMany([req_obj]));  
 
-        let res_obj = await collectionLeads.findOne({});
+        let res_obj = await collectionLeads.findOne({name: req.body.name});
 
         console.log(res_obj);
 

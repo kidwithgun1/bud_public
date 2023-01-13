@@ -50,6 +50,9 @@ async function pushLeadDB(req, res) {
     }
 }
 
+app.get("/", (req,res) => {
+    res.send("<h1 style='text-align:center; width:100%; margin-top: 20%'>404 NOT FOUND</h1>")
+});
 
 app.get("/Leads/add", (req, res) => {            
     res.send('Post Lead data here');
@@ -63,7 +66,7 @@ app.post("/Leads/add", (req, res) => {
             console.error(e);
         }
     } else {
-        res.send('Acess denied');
+        res.send('Access denied');
     }
 });
 

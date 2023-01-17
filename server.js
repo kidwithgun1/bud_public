@@ -25,6 +25,9 @@ async function pushLeadDB(req, res) {
         let date = ("0" + date_ob.getDate()).slice(-2);
         let month = ("0" + (date_ob.getMonth() + 1)).slice(-2);
         let year = date_ob.getFullYear();
+        let hours = date_ob.getHours();
+        let minutes = date_ob.getMinutes();
+        let seconds = date_ob.getSeconds();
 
         let req_obj = {
             name: req.body.name,
@@ -32,7 +35,7 @@ async function pushLeadDB(req, res) {
             country: req.body.country,
             ftd: false,
             status: "New",
-            date: `${year}-${month}-${date}`,
+            date: `${year}-${month}-${date}T${hours}:${minutes}:${seconds}`,
             campaign: req.body.campaign,
             problem: req.body.problem
         }

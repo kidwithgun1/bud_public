@@ -21,9 +21,20 @@ async function pushLeadDB(req, res) {
     try{        
         console.log("Connected to Mongo Atlas");
 
+        let date_ob = new Date();
+        let date = ("0" + date_ob.getDate()).slice(-2);
+        let month = ("0" + (date_ob.getMonth() + 1)).slice(-2);
+        let year = date_ob.getFullYear();
+
         let req_obj = {
             name: req.body.name,
-            phone: req.body.phone
+            phone: req.body.phone,
+            country: req.body.country,
+            ftd: false,
+            status: "New",
+            date: `${year}-${month}-${date}`,
+            campaign: req.body.campaign,
+            problem: req.body.problem
         }
 
         const db_BUD = client.db("BUD_sale");
@@ -50,7 +61,7 @@ async function pushLeadDB(req, res) {
     }
 }
 
-app.get("/", (req,res) => {
+app.get("/", (req, res) => {
     res.send("<h1 style='text-align:center; width:100%; margin-top: 20%'>404 NOT FOUND</h1>")
 });
 

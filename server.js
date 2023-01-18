@@ -32,14 +32,7 @@ async function pushLeadDB(req, res) {
         let minutes = date_ob.getMinutes();
         let seconds = date_ob.getSeconds();
 
-        const db_Service = client.db("Service_DB");
-        const collectionService = db_Service.collection("Service");
-
-        let temp_obj = await collectionService.findOne({
-            name: "serviceList"
-        });
-
-        Object.assign(Alpha2ListRU, temp_obj.countrys);
+        
 
         let req_obj = {
             name: req.body.name,
@@ -109,6 +102,17 @@ app.post("/Leads/add", (req, res) => {
 async function StartServer() {
 
     await client.connect();
+
+    const db_Service = client.db("Service_DB");
+        const collectionService = db_Service.collection("Service");
+
+    let temp_obj = await collectionService.findOne({
+        name: "serviceList"
+    });
+
+    Object.assign(Alpha2ListRU, temp_obj.countrys);   
+    
+    console.log(Alpha2ListRU);
 
     ////////////STARTING SERVER///////////////
     app.listen(port, host, () => {

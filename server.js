@@ -9,7 +9,6 @@ const mongo_atlas_uri = 'mongodb+srv://admin:Ih8you123456@bud.xqer2jf.mongodb.ne
 const key = "0$m55r1@qf3mqyg";
 const client = new mongodb.MongoClient(mongo_atlas_uri);
 
-const countrysList = ["France","Portugal","Finland","Denmark","Latvia","Lithuania","Estonia","Czech","Israel","Greece","Germany","Italy","Turkey"];
 let Alpha2ListRU = {};
 const app = express();
 
@@ -32,7 +31,8 @@ async function pushLeadDB(req, res) {
         let minutes = date_ob.getMinutes();
         let seconds = date_ob.getSeconds();
 
-        
+        let date1 = new Date(new Date().toISOString());
+        date1.setUTCHours(date1.getUTCHours()+Alpha2ListRU.UA[1]);
 
         let req_obj = {
             name: req.body.name,
@@ -43,7 +43,8 @@ async function pushLeadDB(req, res) {
             status: "New",
             // date: `${year}-${month}-${date}T${hours}:${minutes}:${seconds}+`,
             // date: new Date(),
-            date: moment().tz("Ukraine").format(),
+            // date: moment().tz("Ukraine").format(),
+            date: date1,
             campaign: req.body.campaign,
             problem: req.body.problem
         }
@@ -111,8 +112,7 @@ async function StartServer() {
     });
 
     Object.assign(Alpha2ListRU, temp_obj.countrys);   
-    
-    console.log(Alpha2ListRU);
+
 
     ////////////STARTING SERVER///////////////
     app.listen(port, host, () => {

@@ -33,6 +33,7 @@ async function pushLeadDB(req, res) {
 
         let date1 = new Date(new Date().toISOString());
         date1.setUTCHours(date1.getUTCHours()+Alpha2ListRU.UA[1]);
+        date1 = date1.toISOString();
 
         let req_obj = {
             name: req.body.name,

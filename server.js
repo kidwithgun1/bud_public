@@ -41,7 +41,7 @@ async function pushLeadDB(req, res) {
             country: Alpha2ListRU[req.body.country][0],
             timezone: Alpha2ListRU[req.body.country][1],
             ftd: false,
-            status: "New",
+            status: "Новый",
             // date: `${year}-${month}-${date}T${hours}:${minutes}:${seconds}+`,
             // date: new Date(),
             // date: moment().tz("Ukraine").format(),

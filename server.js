@@ -47,6 +47,8 @@ async function pushLeadDB(req, res) {
             // date: moment().tz("Ukraine").format(),
             date: date1,
             campaign: req.body.campaign,
+            affiliator: req.body.affiliator,
+            manager: "",
             problem: req.body.problem
         }
 

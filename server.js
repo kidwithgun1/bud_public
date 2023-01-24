@@ -49,6 +49,8 @@ async function pushLeadDB(req, res) {
             campaign: req.body.campaign,
             affiliator: req.body.affiliator,
             manager: "",
+            operator: "",
+            blacklisted: false,
             problem: req.body.problem
         }
 

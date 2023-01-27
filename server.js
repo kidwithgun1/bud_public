@@ -92,7 +92,7 @@ app.get("/", (req, res) => {
 
 
 app.get("/images/img1", (req, res) => {            
-    res.sendFile("DNA1.png", {root: "./images"});
+    res.sendFile("DNA3.png", {root: "./images"});
 });
 
 app.get("/images/img2", (req, res) => {            
@@ -100,7 +100,7 @@ app.get("/images/img2", (req, res) => {
 });
 
 app.get("/images/img3", (req, res) => {            
-    res.sendFile("soti1.png", {root: "./images"});
+    res.sendFile("soti11.png", {root: "./images"});
 });
 
 app.get("/Leads/add", (req, res) => {            

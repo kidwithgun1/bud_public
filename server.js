@@ -50,6 +50,7 @@ async function pushLeadDB(req, res) {
             affiliator: req.body.affiliator,
             manager: "",
             operator: "",
+            comment: "",
             blacklisted: false,
             problem: req.body.problem
         }
@@ -87,6 +88,11 @@ async function pushLeadDB(req, res) {
 
 app.get("/", (req, res) => {
     res.send("<h1 style='text-align:center; width:100%; margin-top: 20%'>404 NOT FOUND</h1>")
+});
+
+
+app.get("/images/img1", (req, res) => {            
+    res.sendFile("DNA1.png", {root: "./images"});
 });
 
 app.get("/Leads/add", (req, res) => {            
